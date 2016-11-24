@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <constant name="struts.devMode" value="true" />
+   <constant name="struts.multipart.maxSize" value="1000000" />
+   
+   <package name="default" namespace="/tutorial" extends="struts-default">
+      <action name="getTutorial" 
+            class="com.tutorialspoint.struts.TutorialsAction">
+            <result name="success">/success.jsp</result>
+            <result name="failure">/failure.jsp</result>
+            <result name="login">/login.jsp</result>
+      </action>
+   </package>
+   
+   <package name="login" namespace="/" extends="struts-default">
+      <action name="login" 
+            class="com.tutorialspoint.struts.LoginAction">
+            <result name="success">/searchForm.jsp</result>
+            <result name="login">/login.jsp</result>
+            <result name="input">/login.jsp</result>
+      </action>
+   </package>
+   
+   <package name="search" namespace="/" extends="struts-default">
+      <action name="searchForm" >
+            <result>/searchForm.jsp</result>
+      </action>
+   </package>
+   
+   <package name="mail" namespace="/" extends="struts-default">
+      <action name="emailer" 
+         class="com.tutorialspoint.struts.EmailerAction"
+         method="execute">
+         <result name="success">/mailsuccess.jsp</result>
+         <result name="error">/mailerror.jsp</result>
+      </action>
+   </package>
+   
+   <package name="uploadFile" namespace="/" extends="struts-default">
+   <action name="upload" class="com.tutorialspoint.struts.UploadFile">
+       <interceptor-ref name="basicStack"/>
+       <!-- interceptor-ref name="fileupload">
+           <param name="allowedTypes">image/jpeg,image/gif</param>
+       </interceptor-ref -->
+       <result name="success">/fileuploadsuccess.jsp</result>
+       <result name="error">/fileuploaderror.jsp</result>
+   </action>
+   </package>
+</struts>
